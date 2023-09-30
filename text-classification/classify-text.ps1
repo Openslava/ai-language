@@ -1,8 +1,9 @@
 # Update these with your service and model values
-$key="<YOUR-KEY>"
-$endpoint="<YOUR-ENDPOINT>"
-$projectName = "ClassifyLab"
-$deploymentName = "articles"
+# stis values vere changed based on lab created
+$key="d429e97f99f2485593ab753485ae9657"
+$endpoint="https://vb-ai-language.cognitiveservices.azure.com/"
+$projectName = "vb-at-textclasification"
+$deploymentName = "vb-ai-text-clasification-20230930"
 $verbose = $false
 
 # Set up headers for API call
@@ -76,6 +77,8 @@ Do {
             -Headers $resultHeaders | ConvertTo-Json -Depth 10
 
     $analysis = ($result | ConvertFrom-Json)
+    # add sleep for free language service to  not exeed the max repest per time internal.
+    Start-Sleep -Seconds 60
 } while ($analysis.status -ne "succeeded")
 Write-Host "...Done`n"
 
